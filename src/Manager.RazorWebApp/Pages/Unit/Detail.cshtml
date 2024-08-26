@@ -1,0 +1,105 @@
+﻿@page "/unit/detail"
+@model Manager.RazorWebApp.Pages.Unit.DetailModel
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+<div class="row justify-content-center">
+    <div class="card col-md-4 col-xxl-4 col-sm-12">
+        <div class="card-body text-center">
+            <p><span class="text-primary">Id: </span>@Model.UnitDetail.Id</p>
+            @if (Model.UnitDetail.ResidentId == null)
+            {
+                <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#assignResidentModal">
+                    Assign Resident
+                </button>
+
+                <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#createResidentModal">
+                    Create Resident
+                </button>
+
+                <!--Assign Resident Modal -->
+                <div class="modal fade" id="assignResidentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Assigning Resident</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" asp-page-handler="AssignResident">
+                                    <input type="hidden" asp-for="AssignResident.UnitId" />
+                                    <div class="form-group text-start">
+                                        <label class="form-label">Resident</label>
+                                        <select asp-for="AssignResident.ResidentId" asp-items="Model.ResidentList" class="form-control form-select"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Create Resident Modal -->
+                <div class="modal fade" id="createResidentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Creating Resident</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" asp-page-handler="CreateResident">
+                                    <div class="form-group text-start">
+                                        <label class="form-label">Unit</label>
+                                        <select asp-for="CreateResident.UnitId" asp-items="Model.UnitList" class="form-select form-select-sm">
+                                            <option value="">Select...</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group text-start">
+                                        <label class="form-label">Name</label>
+                                        <input type="text" class="form-control" asp-for="CreateResident.FirstName" />
+                                    </div>
+                                    <div class="form-group text-start">
+                                        <label class="form-label">Surname</label>
+                                        <input type="text" class="form-control" asp-for="CreateResident.LastName" />
+                                    </div>
+                                    <div class="form-group text-start">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" asp-for="CreateResident.PhoneNumber" />
+                                    </div>
+                                    <div class="form-group text-start">
+                                        <label class="form-label">Email</label>
+                                        <input type="tel" class="form-control" asp-for="CreateResident.Email" />
+                                    </div>
+                                    <div class="form-group text-start">
+                                        <label class="form-label">Address</label>
+                                        <textarea asp-for="CreateResident.Address" class="form-control" rows="4"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <p>
+                    <span class="text-primary">
+                        Resident:
+                    </span>@Model.UnitDetail.ResidentId
+                    <a class="btn btn-secondary btn-sm" asp-page="/resident/detail" asp-route-id="@Model.UnitDetail.ResidentId">Show Resident</a>
+                </p>
+            }
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+}

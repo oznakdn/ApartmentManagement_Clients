@@ -1,0 +1,17 @@
+﻿@page "/resident/detail"
+@model Manager.RazorWebApp.Pages.Resident.DetailModel
+
+
+<div class="row justify-content-center d-flex">
+    <div class="col-md-4 col-xl-4 col-xxl-4 col-sm-12 card">
+        <div class="card-header">
+            <img src="~/ProfilePictures/@Model.Resident.Picture" class="img-fluid img-sm img-thumbnail rounded-2"/>
+        </div>
+        <div class="card-body">
+            <p><span class="text-primary">Id: </span>@Model.Resident.Id</p>
+            <p><span class="text-primary">Name: </span>@Model.Resident.FullName</p>
+            <p><span class="text-primary">Phone Number: </span>@Model.Resident.PhoneNumber</p>
+            <p><span class="text-primary">Email: </span>@Model.Resident.Email</p>
+        </div>
+    </div>
+</div>

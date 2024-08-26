@@ -1,0 +1,88 @@
+﻿@page "/site/index"
+@model Manager.RazorWebApp.Pages.Site.IndexModel
+
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+
+
+
+<div class="row d-flex justify-content-center">
+    <div class="card col-md-4 col-xxl-4 col-sm-12">
+        <div class="card-body text-center">
+            <p><span class="text-primary">Id:</span> @Model.SiteDetail.SiteId</p>
+            <p><span class="text-primary">Site Name:</span> @Model.SiteDetail.Name</p>
+            <p><span class="text-primary">Address:</span> @Model.SiteDetail.Address</p>
+        </div>
+    </div>
+</div>
+
+<div class="row d-flex justify-content-end">
+    <div class="col-3 text-end">
+
+        <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Create Block
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Creating Block</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post">
+                            <input type="hidden" asp-for="CreateBlock.SiteId" />
+                            <div class="form-group text-start">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" asp-for="CreateBlock.Name" />
+                            </div>
+                            <div class="form-group text-start">
+                                <label class="form-label">Unit Count</label>
+                                <input type="number" class="form-control" asp-for="CreateBlock.TotalUnits" />
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container-fluid">
+    @foreach (var block in Model.SiteDetail.Blocks)
+    {
+        <div class="row justify-content-center text-primary text-bold-700 my-1">
+            @block.Name
+            @if (block.AvailableUnits > 0)
+            {
+                <a class="btn btn-success btn-sm my-1" asp-page="/Site/CreateAllUnit" asp-route-blockId="@block.Id">Create Unit</a>
+            }
+        </div>
+        <hr />
+        <div class="row d-flex">
+            @foreach (var unit in block.Units)
+            {
+                <span class="card  ml-1 col @(unit.IsEmpty ? "bg-success":"bg-danger")">
+                    <a asp-page="/Unit/Detail" asp-route-id="@unit.Id" class="text-center text-decoration-none text-white">
+                        <span>
+                            @unit.UnitNo
+                        </span>
+                    </a>
+                </span>
+            }
+        </div>
+    }
+</div>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+}
