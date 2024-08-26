@@ -21,6 +21,7 @@ public class Endpoints
     {
         public const string GetSiteByManagerId = "/api/apartment/site/getSiteByManagerId";
         public const string GetSiteDetailByManagerId = "/api/apartment/site/getSiteDetailByManagerId";
+        public const string GetUnitById = "/api/apartment/unit/getUnitById";
 
     }
 

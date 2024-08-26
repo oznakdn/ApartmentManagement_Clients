@@ -31,7 +31,7 @@ public class DetailModel(SiteService siteService, ResidentService residentServic
 
     public async Task OnGetAsync(string id)
     {
-        //UnitDetail = await siteService.GetUnitDetailByIdAsync(id);
+        UnitDetail = await siteService.GetUnitByIdAsync(id);
         //AssignResident.UnitId = id;
 
         //var residents = await residentService.GetResidentsAsync();
@@ -42,8 +42,6 @@ public class DetailModel(SiteService siteService, ResidentService residentServic
         //var units = await siteService.GetUnitsAsync();
         //Units = units.Where(x=>x.ResidentId == null).ToList();
         //UnitList = new SelectList(Units, "Id", "Detail");
-
-        await Task.CompletedTask;
     }
 
     //public async Task<IActionResult> OnPostAssignResidentAsync()

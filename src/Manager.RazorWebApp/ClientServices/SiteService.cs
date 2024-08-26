@@ -23,6 +23,22 @@ public class SiteService : ServiceBase
         return new GetSiteDetailResponse();
     }
 
+    public async Task<UnitResponse> GetUnitByIdAsync(string unitId)
+    {
+        await base.AddAuthorizationHeader();
+        string url = $"{Endpoints.Apartment.GetUnitById}/{unitId}";
+        var httpResponse = await _httpClient.GetAsync(url);
+
+        if (httpResponse.IsSuccessStatusCode)
+        {
+            var response = await httpResponse.Content.ReadFromJsonAsync<UnitResponse>();
+            return response!;
+        }
+        return new UnitResponse();
+    }
+
+
+
     //public async Task<bool> CreateBlockAsync(CreateBlockRequest createBlock)
     //{
     //    await base.AddAuthorizationHeader();

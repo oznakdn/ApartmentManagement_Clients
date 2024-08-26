@@ -7,6 +7,12 @@
     <div class="card col-md-4 col-xxl-4 col-sm-12">
         <div class="card-body text-center">
             <p><span class="text-primary">Id: </span>@Model.UnitDetail.Id</p>
+            <p><span class="text-primary">No: </span>@Model.UnitDetail.UnitNo</p>
+            <p><span class="text-primary">Empty: </span>@(Model.UnitDetail.IsEmpty == true ? "Yes" : "No")</p>
+            <p><span class="text-primary">Has Car: </span>@(Model.UnitDetail.HasCar == true ? "Yes" : "No")</p>
+
+
+
             @if (Model.UnitDetail.ResidentId == null)
             {
                 <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#assignResidentModal">
