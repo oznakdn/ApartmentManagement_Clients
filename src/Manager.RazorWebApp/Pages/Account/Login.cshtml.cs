@@ -1,8 +1,8 @@
 using AspNetCoreHero.ToastNotification.Abstractions;
 using Manager.RazorWebApp.ClientServices;
-using Manager.RazorWebApp.Models.AccountModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Shared.Models;
 
 namespace Manager.RazorWebApp.Pages.Account;
 

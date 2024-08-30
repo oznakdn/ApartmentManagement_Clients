@@ -1,9 +1,9 @@
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
-using Manager.RazorWebApp;
 using Manager.RazorWebApp.ClientServices;
-using Manager.RazorWebApp.Filters;
-using Manager.RazorWebApp.Handlers;
+using Shared;
+using Shared.Filters;
+using Shared.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,15 +11,36 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddHttpContextAccessor();
 
+#region Account Service
+
 builder.Services.AddHttpClient<AccountService>("Account", conf =>
 {
-    conf.BaseAddress = new Uri(Endpoints.AccountBase);
+    conf.BaseAddress = new Uri(Endpoints.Account.BaseUrl);
 });
-builder.Services.AddHttpClient<SiteService>("Site", conf=>
+builder.Services.AddScoped<AccountService>();
+
+#endregion
+
+
+#region Site Service
+
+builder.Services.AddHttpClient<SiteService>("Site", conf =>
 {
-    conf.BaseAddress = new Uri(Endpoints.ApartmentBase);
+    conf.BaseAddress = new Uri(Endpoints.Apartment.BaseUrl);
 });
+builder.Services.AddScoped<SiteService>();
+
+#endregion
+
+
+#region Resident Service
+
 builder.Services.AddHttpClient<ResidentService>();
+builder.Services.AddScoped<ResidentService>();
+
+#endregion
+
+
 
 
 
@@ -31,6 +52,7 @@ builder.Services.AddAuthentication("AuthScheme")
         options.AccessDeniedPath = "/Account/AccessDenied";
     });
 
+
 builder.Services.AddNotyf(conf =>
 {
     conf.Position = NotyfPosition.TopRight;
@@ -40,10 +62,7 @@ builder.Services.AddNotyf(conf =>
 });
 
 builder.Services.AddTransient<AuthorizationHandler>();
-builder.Services.AddScoped<TokenCheckFilter>();
-builder.Services.AddScoped<AccountService>();
-builder.Services.AddScoped<SiteService>();
-builder.Services.AddScoped<ResidentService>();
+builder.Services.AddScoped<CheckAuthorization>();
 
 
 var app = builder.Build();

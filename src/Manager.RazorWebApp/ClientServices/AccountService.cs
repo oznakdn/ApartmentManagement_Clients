@@ -1,18 +1,22 @@
 ﻿using Manager.RazorWebApp.AccountModels;
-using Manager.RazorWebApp.Constants;
-using Manager.RazorWebApp.Handlers;
 using Manager.RazorWebApp.Models.AccountModels;
 using Microsoft.AspNetCore.Authentication;
+using Shared;
+using Shared.Constants;
+using Shared.Handlers;
+using Shared.Models;
 
 namespace Manager.RazorWebApp.ClientServices;
 
-public class AccountService : ServiceBase
+public class AccountService : ClientServiceBase
 {
 
     private readonly AuthorizationHandler _authorizationHandler;
+    private readonly IHttpContextAccessor _contextAccessor;
     public AccountService(IHttpClientFactory clientFactory, IHttpContextAccessor contextAccessor, AuthorizationHandler authorizationHandler) : base(contextAccessor)
     {
         _authorizationHandler = authorizationHandler;
+        _contextAccessor = contextAccessor;
         _httpClient = clientFactory.CreateClient("Account");
     }
 

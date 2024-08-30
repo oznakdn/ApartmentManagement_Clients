@@ -1,6 +1,8 @@
-﻿namespace Manager.RazorWebApp.ClientServices;
+﻿using Shared;
 
-public class ResidentService : ServiceBase
+namespace Manager.RazorWebApp.ClientServices;
+
+public class ResidentService : ClientServiceBase
 {
     public ResidentService(IHttpClientFactory clientFactory, IHttpContextAccessor contextAccessor) : base(contextAccessor)
     {

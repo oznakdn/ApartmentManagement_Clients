@@ -1,8 +1,9 @@
 ﻿using Manager.RazorWebApp.Models.SiteModels;
+using Shared;
 
 namespace Manager.RazorWebApp.ClientServices;
 
-public class SiteService : ServiceBase
+public class SiteService : ClientServiceBase
 {
     public SiteService(IHttpClientFactory clientFactory, IHttpContextAccessor contextAccessor) : base(contextAccessor)
     {
