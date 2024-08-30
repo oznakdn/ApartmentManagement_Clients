@@ -1,9 +1,9 @@
 using Admin.RazorWebApp.ClientServices;
-using Admin.RazorWebApp.Filters;
 using Admin.RazorWebApp.Models.AccountModels;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Shared.Filters;
 using System.Security.Claims;
 
 namespace Admin.RazorWebApp.Pages.Account;

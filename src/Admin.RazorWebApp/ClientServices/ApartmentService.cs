@@ -1,11 +1,13 @@
 ﻿using Admin.RazorWebApp.Models.ApartmentModels;
+using Shared;
 
 namespace Admin.RazorWebApp.ClientServices;
 
 public class ApartmentService : ClientServiceBase
 {
-    public ApartmentService(IHttpClientFactory clientFactory, IHttpContextAccessor contextAccessor) : base(clientFactory, contextAccessor)
+    public ApartmentService(IHttpContextAccessor contextAccessor, IHttpClientFactory clientFactory) : base(contextAccessor)
     {
+        _httpClient = clientFactory.CreateClient("Apartment");
     }
 
     public async Task<bool> CreateSiteAsync(CreateSiteRequest createSite)
@@ -64,7 +66,8 @@ public class ApartmentService : ClientServiceBase
     public async Task<bool> DeleteSiteAsync(string id)
     {
         await base.AddAuthorizationHeader();
-        var httpResponse = await _httpClient.DeleteAsync($"https://localhost:7000/api/site/site/delete/{id}");
+        string url = $"{Endpoints.Apartment.DeleteSite}/{id}";
+        var httpResponse = await _httpClient.DeleteAsync(url);
         if (httpResponse.IsSuccessStatusCode)
         {
             return true;

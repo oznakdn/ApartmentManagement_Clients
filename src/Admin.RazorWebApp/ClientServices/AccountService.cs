@@ -1,18 +1,23 @@
-﻿using Admin.RazorWebApp.Constants;
-using Admin.RazorWebApp.Handlers;
-using Admin.RazorWebApp.Models.AccountModels;
+﻿using Admin.RazorWebApp.Models.AccountModels;
 using Microsoft.AspNetCore.Authentication;
+using Shared;
+using Shared.Constants;
+using Shared.Handlers;
+using Shared.Models;
 
 namespace Admin.RazorWebApp.ClientServices;
 
 public sealed class AccountService : ClientServiceBase
 {
     private readonly AuthorizationHandler _authorizationHandler;
-    public AccountService(IHttpClientFactory clientFactory, IHttpContextAccessor contextAccessor, AuthorizationHandler authorizationHandler) : base(clientFactory, contextAccessor)
-    {
-        _authorizationHandler = authorizationHandler;
-    }
+    private readonly IHttpContextAccessor _contextAccessor;
 
+    public AccountService(IHttpContextAccessor contextAccessor, IHttpClientFactory clientFactory, AuthorizationHandler authorizationHandler) : base(contextAccessor)
+    {
+        _httpClient = clientFactory.CreateClient("Account");
+        _authorizationHandler = authorizationHandler;
+        _contextAccessor = contextAccessor;
+    }
 
     public async Task<bool> LoginAsync(LoginRequest loginInput)
     {

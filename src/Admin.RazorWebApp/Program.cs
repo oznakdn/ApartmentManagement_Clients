@@ -1,27 +1,60 @@
 using Admin.RazorWebApp.ClientServices;
-using Admin.RazorWebApp.Filters;
-using Admin.RazorWebApp.Handlers;
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
+using Shared;
+using Shared.Filters;
+using Shared.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 
-builder.Services.AddHttpClient<AccountService>();
+
+#region Account Service
+
+builder.Services.AddHttpClient<AccountService>("Account", conf =>
+{
+    conf.BaseAddress = new Uri(Endpoints.Account.BaseUrl);
+});
 builder.Services.AddScoped<AccountService>();
 
-builder.Services.AddHttpClient<ManagerService>();
+#endregion
+
+
+#region Manager Service
+
+builder.Services.AddHttpClient<ManagerService>("Account", conf =>
+{
+    conf.BaseAddress = new Uri(Endpoints.Account.BaseUrl);
+});
 builder.Services.AddScoped<ManagerService>();
 
-builder.Services.AddHttpClient<ApartmentService>();
+#endregion
+
+
+#region Apartment Service
+
+builder.Services.AddHttpClient<ApartmentService>("Apartment", conf =>
+{
+    conf.BaseAddress = new Uri(Endpoints.Apartment.BaseUrl);
+});
 builder.Services.AddScoped<ApartmentService>();
 
-builder.Services.AddHttpClient<AggregateService>();
+#endregion
+
+
+#region Aggregate Service
+
+builder.Services.AddHttpClient<AggregateService>("Aggregator", conf =>
+{
+    conf.BaseAddress = new Uri(Endpoints.Aggrigator.BaseUrl);
+});
 builder.Services.AddScoped<AggregateService>();
 
-builder.Services.AddHttpContextAccessor();
+#endregion
 
+
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthentication("AuthScheme")
     .AddCookie("AuthScheme", options =>

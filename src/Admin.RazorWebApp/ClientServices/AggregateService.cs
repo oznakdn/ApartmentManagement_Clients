@@ -1,11 +1,13 @@
 ﻿using Admin.RazorWebApp.Models.ApartmentModels;
+using Shared;
 
 namespace Admin.RazorWebApp.ClientServices;
 
 public class AggregateService : ClientServiceBase
 {
-    public AggregateService(IHttpClientFactory clientFactory, IHttpContextAccessor contextAccessor) : base(clientFactory, contextAccessor)
+    public AggregateService(IHttpContextAccessor contextAccessor , IHttpClientFactory clientFactory) : base(contextAccessor)
     {
+        _httpClient = clientFactory.CreateClient("Aggregator");
     }
 
     public async Task<GetApartmentCountsResponse> GetApartmentCounts()

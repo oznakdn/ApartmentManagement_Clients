@@ -1,11 +1,11 @@
 using Admin.RazorWebApp.ClientServices;
-using Admin.RazorWebApp.Filters;
 using Admin.RazorWebApp.Models.ApartmentModels;
 using Admin.RazorWebApp.Models.ManagerModels;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Shared.Filters;
 
 namespace Admin.RazorWebApp.Pages.Apartment;
 

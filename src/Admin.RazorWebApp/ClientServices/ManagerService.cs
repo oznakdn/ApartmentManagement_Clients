@@ -1,11 +1,13 @@
 ﻿using Admin.RazorWebApp.Models.ManagerModels;
+using Shared;
 
 namespace Admin.RazorWebApp.ClientServices;
 
 public class ManagerService : ClientServiceBase
 {
-    public ManagerService(IHttpClientFactory clientFactory, IHttpContextAccessor contextAccessor) : base(clientFactory, contextAccessor)
+    public ManagerService(IHttpContextAccessor contextAccessor, IHttpClientFactory clientFactory) : base(contextAccessor)
     {
+        _httpClient = clientFactory.CreateClient("Account");
     }
 
     public async Task<IEnumerable<GetAllManagersResponse>> GetAllManagersAsync()

@@ -7,7 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{156B6C1B-F5B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin.RazorWebApp", "src\Admin.RazorWebApp\Admin.RazorWebApp.csproj", "{DAF28773-1CE6-4EE2-B0A8-9B9FD23672E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manager.RazorWebApp", "src\Manager.RazorWebApp\Manager.RazorWebApp.csproj", "{6BA06A2A-16DA-459C-809F-61C5AB7B7300}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Manager.RazorWebApp", "src\Manager.RazorWebApp\Manager.RazorWebApp.csproj", "{6BA06A2A-16DA-459C-809F-61C5AB7B7300}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "src\Shared\Shared.csproj", "{EF589EF2-A88C-4B23-AD7D-CB3A826A5C1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{6BA06A2A-16DA-459C-809F-61C5AB7B7300}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BA06A2A-16DA-459C-809F-61C5AB7B7300}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BA06A2A-16DA-459C-809F-61C5AB7B7300}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF589EF2-A88C-4B23-AD7D-CB3A826A5C1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF589EF2-A88C-4B23-AD7D-CB3A826A5C1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF589EF2-A88C-4B23-AD7D-CB3A826A5C1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF589EF2-A88C-4B23-AD7D-CB3A826A5C1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +36,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DAF28773-1CE6-4EE2-B0A8-9B9FD23672E8} = {156B6C1B-F5B0-4D16-98BF-035E289039CF}
 		{6BA06A2A-16DA-459C-809F-61C5AB7B7300} = {156B6C1B-F5B0-4D16-98BF-035E289039CF}
+		{EF589EF2-A88C-4B23-AD7D-CB3A826A5C1D} = {156B6C1B-F5B0-4D16-98BF-035E289039CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6C9EB83D-2FA1-4B1C-8DBC-1AC842A9DB5F}
